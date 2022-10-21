@@ -1,38 +1,41 @@
-package model;
+package it.polito.tdp.model;
 
 public class Voto {
-	private String NomeCorso;
+	private String nome;
 	private int punti;
 	
-	public Voto(String nomeCorso, int punti) {
+	public Voto(String nome, int voto) {
 		super();
-		this.NomeCorso = nomeCorso;
-		this.punti = punti;
+		this.nome = nome;
+		this.punti = voto;
 	}
 	
-	public String getNomeCorso() {
-		return NomeCorso;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeCorso(String nomeCorso) {
-		NomeCorso = nomeCorso;
-	}
+	
 	public int getPunti() {
 		return punti;
 	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public void setPunti(int punti) {
 		this.punti = punti;
 	}
 
 	@Override
 	public String toString() {
-		return  NomeCorso + "; " + punti + "";
+		return nome + " : " + punti ;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((NomeCorso == null) ? 0 : NomeCorso.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + punti;
 		return result;
 	}
@@ -46,10 +49,10 @@ public class Voto {
 		if (getClass() != obj.getClass())
 			return false;
 		Voto other = (Voto) obj;
-		if (NomeCorso == null) {
-			if (other.NomeCorso != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!NomeCorso.equals(other.NomeCorso))
+		} else if (!nome.equals(other.nome))
 			return false;
 		if (punti != other.punti)
 			return false;
@@ -57,5 +60,9 @@ public class Voto {
 	}
 	
 	
-
+	
+	
+	
+	
+	
 }
