@@ -11,8 +11,47 @@ public class Libretto {
 		this.voti = new ArrayList<Voto>() ;
 	}
 	
-	public void add(Voto v) {
-		this.voti.add(v);
+	public boolean add(Voto v) {
+		if(!isDuplicato(v) && !isConflitto(v)) {
+			this.voti.add(v);
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	
+	public List<Voto> getVoto(){
+		return this.voti;
+	}
+	
+	public Libretto votiMigliorati() {
+		Libretto nuovo = new Libretto();
+		for(Voto v : this.voti) {
+			int punti = v.getPunti();
+			if(punti>=24) {
+				punti +=2;
+				
+			}else {
+				punti ++;
+			}
+			if(punti>30) {
+				punti=30;
+			}
+			// non bisogna modificare il vecchio libretto ma creare un nuovo oggetto voto nel libretto nuovo senza modificare il libretto vecchio
+			
+			nuovo.add(new Voto(v.getNome(),punti));
+		}
+		return nuovo;
+	}
+	
+	public void cancellaVotiMinori(int punti) {
+		for(Voto v : this.voti) {
+			if(v.getPunti()<punti) {
+				this.voti.remove(v);
+			}
+		}
 	}
 	
 	public String toString() {
@@ -54,6 +93,7 @@ public class Libretto {
 		}
 		return false;
 	}
+	
 	public boolean isConflitto(Voto v ) {
 		Integer punti = this.puntiEsame(v.getNome());
 		if(punti!= null && punti != v.getPunti()) {
